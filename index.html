@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CognitiveX - Registration</title>
+    <title>CognitiveX</title>
     <style>
         * {
             margin: 0;
@@ -16,16 +16,41 @@
             background-color: #e8e8e8;
             padding: 40px 20px;
             color: #000;
+            overflow-x: hidden;
         }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .logo {
             text-align: center;
             margin-bottom: 60px;
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .logo h1 {
@@ -33,11 +58,32 @@
             font-weight: bold;
             letter-spacing: 3px;
             color: #000;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
         }
 
         .logo .x {
             color: #666;
             font-style: italic;
+            display: inline-block;
+            animation: rotate 3s ease-in-out infinite;
+        }
+
+        @keyframes rotate {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(5deg);
+            }
         }
 
         h2 {
@@ -46,6 +92,25 @@
             color: #000;
             border-bottom: 3px solid #000;
             padding-bottom: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: -100%;
+            width: 100%;
+            height: 3px;
+            background: #666;
+            animation: slideIn 1.5s ease-out forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                left: 0;
+            }
         }
 
         p {
@@ -53,6 +118,16 @@
             line-height: 1.8;
             margin-bottom: 15px;
             color: #000;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
         .important {
@@ -64,6 +139,19 @@
             border: 4px solid #000;
             color: #000;
             letter-spacing: 1px;
+            position: relative;
+            animation: borderPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes borderPulse {
+            0%, 100% {
+                border-color: #000;
+                box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+            }
+            50% {
+                border-color: #000;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            }
         }
 
         .links {
@@ -75,12 +163,24 @@
             padding: 25px 0;
             border-top: 2px solid #000;
             border-bottom: 2px solid #000;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .link-item:hover {
+            transform: translateX(10px);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
         }
 
         .link-item h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
             color: #000;
+            transition: color 0.3s ease;
+        }
+
+        .link-item:hover h3 {
+            color: #666;
         }
 
         .link-item a {
@@ -88,10 +188,13 @@
             color: #000;
             text-decoration: underline;
             word-break: break-all;
+            transition: all 0.3s ease;
+            display: inline-block;
         }
 
         .link-item a:hover {
             color: #666;
+            transform: scale(1.02);
         }
 
         ul {
@@ -104,11 +207,70 @@
             margin: 10px 0;
             padding-left: 20px;
             color: #000;
+            opacity: 0;
+            animation: fadeInLeft 0.6s ease-out forwards;
+        }
+
+        ul li:nth-child(1) { animation-delay: 0.1s; }
+        ul li:nth-child(2) { animation-delay: 0.2s; }
+        ul li:nth-child(3) { animation-delay: 0.3s; }
+        ul li:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         ul li:before {
             content: "▪ ";
             font-weight: bold;
+            animation: blink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .logo img {
+            max-width: 600px;
+            width: 100%;
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        p strong {
+            position: relative;
+            display: inline-block;
+        }
+
+        p strong::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #666;
+            transition: width 0.3s ease;
+        }
+
+        p:hover strong::after {
+            width: 100%;
         }
 
         @media (max-width: 600px) {
@@ -124,14 +286,44 @@
                 font-size: 1rem;
             }
         }
+
+        .epoch-title {
+            text-align: center;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .epoch-title:hover {
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .footer-quote {
+            text-align: center;
+            margin-top: 60px;
+            font-style: italic;
+            color: #666;
+            animation: fadeIn 2s ease-out;
+            transition: all 0.3s ease;
+        }
+
+        .footer-quote:hover {
+            color: #000;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
+    <h1 class="epoch-title">EPOCH SOCIETY PRESENTS</h1>
     <div class="container">
         <div class="logo">
-            <img src="logo.png" alt="CognitiveX" style="max-width: 600px; width: 100%; height: auto;">
+            <img src="logo.png" alt="CognitiveX">
         </div>
-
+        
         <h2>16 HOURS HACKATHON</h2>
         
         <p><strong>Bootcamp:</strong> November 1-3 (7:00-9:00 PM Online)</p>
@@ -140,8 +332,6 @@
         <p><strong>Team Size:</strong> 3-4 Members</p>
         <p><strong>Organized by:</strong> EPOCH SOCIETY</p>
 
-       
-
         <h2>⚠ Important Note</h2>
         <p><strong>Participation in the Bootcamp is mandatory to join the Hackathon</strong>, as problem statements will be derived from the concepts and tools covered during the sessions led by SmartBridge mentors.</p>
         <p><strong>It is mandatory for all team members to:</strong></p>
@@ -149,21 +339,21 @@
             <li>Attend all bootcamp sessions (Nov 1-3, 7:00-9:00 PM)</li>
             <li>Register individually using the registration link</li>
         </ul>
-         <div class="important">
-             ALL YOUR TEAM MEMBERS SHOULD REGISTER USING THE BELLOW LINK 
+        <div class="important">
+            ALL YOUR TEAM MEMBERS SHOULD REGISTER USING THE BELLOW LINK 
         </div>
 
         <div class="links">
             <div class="link-item">
                 <h3>🔗 Registration Link</h3>
-                <a href="https://smartinternz.com/cognitivex-hackathon-2025" target="_blank" style="text-decoration: none;">
+                <a href="https://smartinternz.com/cognitivex-hackathon-2025" target="_blank" style="text-decoration: none ;">
                     https://smartinternz.com/cognitivex-hackathon-2025 
                 </a>
             </div>
 
             <div class="link-item">
                 <h3>💬 WhatsApp Group</h3>
-                <a href="https://chat.whatsapp.com/FONwS8ayfMd6HQuu8kmQ4l?mode=wwt" target="_blank" style="text-decoration: none;">
+                <a href="https://chat.whatsapp.com/FONwS8ayfMd6HQuu8kmQ4l?mode=wwt" target="_blank" style="text-decoration: none ;">
                     https://chat.whatsapp.com/FONwS8ayfMd6HQuu8kmQ4l?mode=wwt
                 </a>
             </div>
@@ -177,7 +367,7 @@
             <li>Network with innovators, developers & tech leaders</li>
         </ul>
 
-        <p style="text-align: center; margin-top: 60px; font-style: italic; color: #666;">
+        <p class="footer-quote">
             "The future is just one epoch away"
         </p>
     </div>
